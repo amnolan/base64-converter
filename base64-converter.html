@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<div>
+		<h1>String to Base64</h1>
+		<table>
+			<tr>
+				<td><label>String to Convert</label></td>
+				<td><input type="text" id="inputToConvert1"></input></td>
+			</tr>
+			<tr>
+				<td><label>Base64 String</label></td>
+				<td><textarea id="outputToConvert1" disabled></textarea></td>
+			</tr>
+			<td>
+				<td><button onclick="copyText('outputToConvert1')">Copy output</button></td>
+			</td>
+		</table>
+		<h1>Base64 to String</h1>
+		<table>
+			<tr>
+				<td><label>String to Convert</label></td>
+				<td><input type="text" id="inputToConvert2"></input></td>
+			</tr>
+			<tr>
+				<td><label>String</label></td>
+				<td><textarea id="outputToConvert2" disabled></textarea></td>
+			</tr>
+			<td>
+				<td><button onclick="copyText('outputToConvert2')">Copy output</button></td>
+			</td>
+		</table>
+	</div>
+	<script>
+		function copyText(field) {
+		  var copyText = document.getElementById(field);
+		  copyText.select(); 
+		  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+		  navigator.clipboard.writeText(copyText.value);
+		  console.log("copied value:" + copyText.value);
+		}
+		function convertToBase64(input) {
+		    if (input === undefined)
+				return;
+		    if (input === "")
+				return;
+		    if (input.length === 0)
+				return;
+			return btoa(input);
+		}
+
+		function convertToString(input) {
+		    if (input === undefined)
+				return;
+		    if (input === "")
+				return;
+		    if (input.length === 0)
+				return;
+			return atob(input);
+		}
+		$("#inputToConvert1").keyup(function() {
+		    $("#outputToConvert1").val(convertToBase64($("#inputToConvert1").val()));
+		});
+		$("#inputToConvert2").keyup(function() {
+		    $("#outputToConvert2").val(convertToString($("#inputToConvert2").val()));
+		});
+	</script>
+</html>
